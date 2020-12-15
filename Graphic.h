@@ -2,46 +2,34 @@
 #define PERFECTHASHING_GRAPHIC_H
 
 
+template <class T>
 class Graphic {
 private:
-    vector<int> data;
+    vector<T> data;
     size_t n;
     size_t m;
     vector<UI> rand_vec1;
     vector<UI> rand_vec2;
-    bool flag_int;
     vector<UI> node_marks;
 
 public:
-    Graphic(vector<int> data_, UI c = 3, bool f_int=true){
+    explicit Graphic(vector<T> data_, UI c = 3){
         data = data_;
         n = data.size();
         m = c * n;
-        if (f_int){
-            flag_int = true;
-        }
-        else {
-            flag_int = false;
-        }
     }
 
-    void generate_rand_vectors(UI r_max = 10){
+    void generate_rand_vectors(size_t s = 4, UI r_max = 10){
         rand_vec1.resize(0);
         rand_vec2.resize(0);
-        size_t s;
-        if (flag_int){
-            s = 4;
-        }
-        else {
-            s = 50;
-        }
         for(size_t i = 0; i < s; i++){
             rand_vec1.push_back(1 + rand() % r_max);
             rand_vec2.push_back(1 + rand() % r_max);
         }
     }
 
-    pair<UI, UI> hash_number(int x){
+
+    pair<UI, UI> hash_fun(int x){
         UI f1 = 0;
         UI f2 = 0;
         for (size_t i = 0; i < rand_vec1.size(); i++){
@@ -51,55 +39,61 @@ public:
         f1 = f1 % m;
         f2 = f2 % m;
 
-
         return pair<UI, UI>(f1, f2);
     }
 
-//    pair<UI, UI> hash_word(string x){
-//        UI f1 = 0;
-//        UI f2 = 0;
-//        size_t x_len = x.size();
-//        for (size_t i = 0; i < x_len; i++){
-//
-//            f1 += rand_vec1[i] * int(x[i]);
-//            f2 += rand_vec2[i] * int(x[i]);
-//        }
-//        f1 = f1 % m;
-//        f2 = f2 % m;
-//        return pair<UI, UI>(f1, f2);
-//    }
+    pair<UI, UI> hash_fun(string x){
+        UI f1 = 0;
+        UI f2 = 0;
+        size_t x_len = x.size();
+        for (size_t i = 0; i < x_len; i++){
+            f1 += rand_vec1[i] * UI(x[i]);
+            f2 += rand_vec2[i] * UI(x[i]);
+        }
+        f1 = f1 % m;
+        f2 = f2 % m;
+        return pair<UI, UI>(f1, f2);
+    }
 
-    void do_hash(){
+    pair<UI, UI> hash_fun(vector<UI> x){
+        UI f1 = 0;
+        UI f2 = 0;
+        size_t x_len = x.size();
+        for (size_t i = 0; i < x_len; i++){
+            f1 += rand_vec1[i] * x[i];
+            f2 += rand_vec2[i] * x[i];
+        }
+        f1 = f1 % m;
+        f2 = f2 % m;
+        return pair<UI, UI>(f1, f2);
+    }
+
+    void do_hash(size_t s = 4, UI r_max = 1000){
         Graph G(m, n);
         bool flag_loop = false;
         size_t count = 0;
         while (!flag_loop) {
-            cout << "here" << count << endl;
             count++;
-            generate_rand_vectors();
+            generate_rand_vectors(s, r_max);
             vector<pair<UI, UI>> nodes_pairs;
-            if (flag_int){
-                for (size_t i = 0; i < n; i++) {
-                    nodes_pairs.push_back(hash_number(data[i]));
-//                    nodes_pairs.push_back(jenkins(data[i]));
-                }
-            }
-            else {
-                cout << "you are asshole" << endl;
+            for (size_t i = 0; i < n; i++) {
+                nodes_pairs.push_back(hash_fun(data[i]));
             }
             flag_loop = G.generate_rand(nodes_pairs);
         }
+
 //        G.print_adj_with_weights();
+        cout << "COUNT = " << count << endl;
         G.update_marks();
         node_marks = G.get_node_marks();
     }
 
-    UI search(int x){
-        pair<UI, UI> nodes = hash_number(x);
-//        pair<UI, UI> nodes = jenkins(x);
+    UI search(T x){
+        pair<UI, UI> nodes = hash_fun(x);
         UI hash = (node_marks[nodes.first] + node_marks[nodes.second]) % n;
         return hash;
     }
+
 
 };
 
