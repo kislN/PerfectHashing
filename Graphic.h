@@ -25,12 +25,12 @@ public:
         }
     }
 
-    void generate_rand_vectors(UI r_max = 10000){
+    void generate_rand_vectors(UI r_max = 10){
         rand_vec1.resize(0);
         rand_vec2.resize(0);
         size_t s;
         if (flag_int){
-            s = 3;
+            s = 4;
         }
         else {
             s = 50;
@@ -50,6 +50,8 @@ public:
         }
         f1 = f1 % m;
         f2 = f2 % m;
+
+
         return pair<UI, UI>(f1, f2);
     }
 
@@ -79,6 +81,7 @@ public:
             if (flag_int){
                 for (size_t i = 0; i < n; i++) {
                     nodes_pairs.push_back(hash_number(data[i]));
+//                    nodes_pairs.push_back(jenkins(data[i]));
                 }
             }
             else {
@@ -86,7 +89,6 @@ public:
             }
             flag_loop = G.generate_rand(nodes_pairs);
         }
-        cout << "count = " << count << endl;
 //        G.print_adj_with_weights();
         G.update_marks();
         node_marks = G.get_node_marks();
@@ -94,6 +96,7 @@ public:
 
     UI search(int x){
         pair<UI, UI> nodes = hash_number(x);
+//        pair<UI, UI> nodes = jenkins(x);
         UI hash = (node_marks[nodes.first] + node_marks[nodes.second]) % n;
         return hash;
     }

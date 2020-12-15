@@ -22,6 +22,9 @@ private:
     UI edges_num;
     vector<vector<ADJ_VERTEX>> adj_list;
     vector<UI> node_marks;  /// Vector with values of the function g()
+    vector<vector<UI>> connect_comp;
+    vector<UI> connect_list;
+
 
 public:
     Graph(size_t V, size_t E) {
@@ -29,23 +32,79 @@ public:
         edges_num = E;
         adj_list.resize(V, vector<ADJ_VERTEX>{});
         node_marks.resize(V, INF);
+        connect_list.resize(V);
+
 
     }
 
     bool generate_rand(vector<pair<UI, UI>> nodes_pairs) {
         vector<bool> used(graph_size, false);
+        UI comp_count = 1;
         for (UI i = 0; i < edges_num; ++i){
             UI node_1 = nodes_pairs[i].first;
             UI node_2 = nodes_pairs[i].second;
-            if (((!used[node_1]) or (!used[node_2])) and (node_1 != node_2)) {
-                adj_list[node_1].push_back(ADJ_VERTEX{node_2, i});
-                adj_list[node_2].push_back(ADJ_VERTEX{node_1, i});
-                used[node_1] = true;
-                used[node_2] = true;
+            if (node_1 != node_2) {
+                if ((!used[node_1]) and (!used[node_2])){
+                    adj_list[node_1].push_back(ADJ_VERTEX{node_2, i});
+                    adj_list[node_2].push_back(ADJ_VERTEX{node_1, i});
+                    connect_list[node_1] = comp_count;
+                    connect_list[node_2] = comp_count;
+                    comp_count++;
+                    connect_comp.push_back(vector<UI>{node_1, node_2});
+                    used[node_1] = true;
+                    used[node_2] = true;
+                    continue;
+                }
+                else if ((used[node_1]) and (!used[node_2])){
+                    adj_list[node_1].push_back(ADJ_VERTEX{node_2, i});
+                    adj_list[node_2].push_back(ADJ_VERTEX{node_1, i});
+                    connect_list[node_2] = connect_list[node_1];
+                    connect_comp[connect_list[node_1] - 1].push_back(node_2);
+                    used[node_2] = true;
+                    continue;
+                }
+                else if ((!used[node_1]) and (used[node_2])){
+                    adj_list[node_1].push_back(ADJ_VERTEX{node_2, i});
+                    adj_list[node_2].push_back(ADJ_VERTEX{node_1, i});
+                    connect_list[node_1] = connect_list[node_2];
+                    connect_comp[connect_list[node_2] - 1].push_back(node_1);
+                    used[node_1] = true;
+                    continue;
+                }
+                else if ((used[node_1]) and (used[node_2])){
+                    if (connect_list[node_1] != connect_list[node_2]){
+                        adj_list[node_1].push_back(ADJ_VERTEX{node_2, i});
+                        adj_list[node_2].push_back(ADJ_VERTEX{node_1, i});
+
+                        connect_comp[connect_list[node_1] - 1].insert(connect_comp[connect_list[node_1] - 1].end(),
+                                connect_comp[connect_list[node_2] - 1].begin(),
+                                connect_comp[connect_list[node_2] - 1].end());
+
+                        UI temp_comp = connect_list[node_2] - 1;
+                        for (auto x: connect_comp[connect_list[node_2] - 1]){
+                            connect_list[x] = connect_list[node_1];
+                        }
+
+                        connect_comp[temp_comp].clear();
+                        continue;
+                    }
+                    else {
+                        adj_list.clear();
+                        adj_list.resize(graph_size, vector<ADJ_VERTEX>{});
+                        connect_comp.clear();
+                        connect_list.clear();
+                        connect_list.resize(graph_size);
+                        return false;
+                    }
+
+                }
             }
             else {
                 adj_list.clear();
                 adj_list.resize(graph_size, vector<ADJ_VERTEX>{});
+                connect_comp.clear();
+                connect_list.clear();
+                connect_list.resize(graph_size);
                 return false;
             }
         }
