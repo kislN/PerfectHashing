@@ -14,35 +14,35 @@
 #include <vector>
 
 
-
+template <class T>
 class Double {
 private:
-    vector<int> data;
+    vector<T> data;
     size_t n;
     size_t m;
-    vector<vector<int>> table;
+    vector<vector<T>> table;
     vector<size_t> collision_indexes;
-    vector<Quadratic<int>> quad;
-    HashFunction<int> hash_fun;
+    vector<Quadratic<T>> quad;
+    HashFunction<T> hash_fun;
     vector<size_t> quad_indexes;
 
 
 public:
-    explicit Double(vector<int> & data_, UI p = 101) {
+    explicit Double(vector<T> & data_, UI p = 101, UI c = 1) {
         data = data_;
         n = data.size();
-        m = n; /// ???
+        m = c * n;
         table.resize(m);
         quad_indexes.resize(m);
-        hash_fun = HashFunction<int>(0, m, p);
+        hash_fun = HashFunction<T>(0, m, p);
     }
 
 
     void do_hash(){
         for (size_t i = 0; i < n; i++) {
-            int x = data[i];
-            UI hash;
-            hash_fun.hash_int(x, hash);
+            T x = data[i];
+            UI hash = 0;
+            hash_fun.one_hash(x, hash, m);
             vector<bool> used_coll(m, false);
 
             if ((!table[hash].empty()) and (!used_coll[hash])) {
@@ -54,7 +54,7 @@ public:
 
         for (size_t i = 0; i < collision_indexes.size(); ++i){
             UI coll = collision_indexes[i];
-            Quadratic<int> q(table[coll]);
+            Quadratic<T> q(table[coll]);
             quad_indexes[coll] = i;
             q.do_hash();
             quad.push_back(q);
@@ -67,9 +67,9 @@ public:
 //        }
     }
 
-    UI search(int & x){
-        UI hash;
-        hash_fun.hash_int(x, hash);
+    UI search(T & x){
+        UI hash = 0;
+        hash_fun.one_hash(x, hash, m);
 
         if (table[hash].size() > 1){
             hash = quad[quad_indexes[hash]].search(x);

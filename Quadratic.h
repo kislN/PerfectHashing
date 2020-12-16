@@ -34,14 +34,14 @@ public:
         n = data.size();
         m = n * n;
         table.resize(m);
-        hash_fun = HashFunction<T>(0, m, p);
+        hash_fun = HashFunction<T>(1, m, p);
     }
 
     void do_hash(){
         for (size_t i = 0; i < n; i++) {
             int x = data[i];
-            UI hash;
-            hash_fun.hash_int(x, hash);
+            UI hash = 0;
+            hash_fun.one_hash(x, hash, m);
 
             UI primary_hash = hash;
             size_t count = 1;
@@ -57,8 +57,8 @@ public:
     }
 
     UI search(T & x){
-        UI hash;
-        hash_fun.hash_int(x, hash);
+        UI hash = 0;
+        hash_fun.one_hash(x, hash, m);
 
         UI primary_hash = hash;
         size_t count = 1;

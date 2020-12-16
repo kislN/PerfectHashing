@@ -68,7 +68,7 @@ int main() {
 //        cout << v[i] << endl;
 //    }
 
-    Double d_hash(v);
+    Double<int> d_hash(v);
     d_hash.do_hash();
     d_hash.print_tables();
 //    for (size_t i = 0; i < v.size(); ++i) {
@@ -76,10 +76,10 @@ int main() {
 //    }
 
     Graphic<int> g_hash(v, 2);
-//    g_hash.do_hash(3, 100);
-////    for (size_t i = 0; i < v.size(); ++i) {
-////        cout << g_hash.search(v[i]) << endl;
-////    }
+    g_hash.do_hash(3, 100);
+    for (size_t i = 0; i < v.size(); ++i) {
+        cout << g_hash.search(v[i]) << endl;
+    }
 //
 //    cout << endl << "Quadr" << endl;
 //

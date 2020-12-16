@@ -14,10 +14,8 @@
     <list default="true" id="a49dffd3-0d00-421f-9d74-21d0439f30cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Double.h" beforeDir="false" afterPath="$PROJECT_DIR$/Double.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphic.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphic.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Quadratic.h" beforeDir="false" afterPath="$PROJECT_DIR$/Quadratic.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hash_function.h" beforeDir="false" afterPath="$PROJECT_DIR$/hash_function.h" afterDir="false" />
@@ -70,7 +68,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -79,40 +79,52 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="working version with graphHashing for integers" />
     <MESSAGE value="added hash for words and vectors" />
-    <option name="LAST_COMMIT_MESSAGE" value="added hash for words and vectors" />
+    <MESSAGE value="added templates for classes, reform structure for hashing class" />
+    <MESSAGE value="working version of Double hashing with integer" />
+    <option name="LAST_COMMIT_MESSAGE" value="working version of Double hashing with integer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Double.h</url>
-          <line>50</line>
+          <line>62</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Graphic.h</url>
-          <line>88</line>
+          <line>37</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>72</line>
+          <line>78</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Graphic.h</url>
-          <line>84</line>
+          <line>33</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>71</line>
+          <line>77</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Double.h</url>
+          <line>41</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>28</line>
-          <option name="timeStamp" value="22" />
+          <line>70</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Quadratic.h</url>
+          <line>40</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -123,6 +135,7 @@
         <watch expression="(-3 % 5 )" language="ObjectiveC" />
         <watch expression="(a % b + b) % b" language="ObjectiveC" />
         <watch expression="fill(adj_list.begin(), adj_list.end(), vector&lt;ADJ_VERTEX&gt;{})" language="ObjectiveC" />
+        <watch expression="((h_params.a * x + h_params.b) % h_params.p) % h_params.M" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
