@@ -55,6 +55,8 @@ cmath
 -
 queue
 -
+time.h
+-
 Quadratic.h
 /Users/stasyan/CLionProjects/PerfectHashing/Quadratic.h
 Double.h

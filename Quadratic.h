@@ -12,48 +12,36 @@
 
 #include <vector>
 
-using namespace std;
-typedef unsigned int UI;
 
+template <typename T>
 struct element {
-    int key;
+    T key;
     bool used;
 };
 
-struct hash_params {
-    UI a;
-    UI b;
-    UI p;
-    size_t M;
-};
-
-
+template <class T>
 class Quadratic {
 private:
-    vector<int> data;
+    vector<T> data;
     size_t n;
     size_t m;
-    vector<element> table;
-    hash_params h_params;
+    vector<element<T>> table;
+    HashFunction<T> hash_fun;
 
 public:
-    Quadratic(vector<int> data_, UI p = 101) {
+    explicit Quadratic(vector<T> & data_, UI p = 101) {
         data = data_;
         n = data.size();
         m = n * n;
         table.resize(m);
-
-        UI a = 1 + rand() % p;
-        UI b = 0 + rand() % p;
-        h_params = hash_params{a, b, p, m};
+        hash_fun = HashFunction<T>(0, m, p);
     }
 
-
-    void create_table(){
-
+    void do_hash(){
         for (size_t i = 0; i < n; i++) {
             int x = data[i];
-            UI hash = hash_fun(x, h_params.a, h_params.b, h_params.p, h_params.M);
+            UI hash;
+            hash_fun.hash_int(x, hash);
 
             UI primary_hash = hash;
             size_t count = 1;
@@ -68,9 +56,9 @@ public:
 
     }
 
-
-    UI search_x(int x){
-        UI hash = hash_fun(x, h_params.a, h_params.b, h_params.p, h_params.M);
+    UI search(T & x){
+        UI hash;
+        hash_fun.hash_int(x, hash);
 
         UI primary_hash = hash;
         size_t count = 1;

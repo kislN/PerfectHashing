@@ -13,7 +13,7 @@ private:
     vector<UI> node_marks;
 
 public:
-    explicit Graphic(vector<T> data_, UI c = 3){
+    explicit Graphic(vector<T> & data_, UI c = 3){
         data = data_;
         n = data.size();
         m = c * n;
@@ -28,8 +28,7 @@ public:
         }
     }
 
-
-    pair<UI, UI> hash_fun(int x){
+    void hash_fun(int & x, pair<UI, UI> & nodes_pair){
         UI f1 = 0;
         UI f2 = 0;
         for (size_t i = 0; i < rand_vec1.size(); i++){
@@ -39,10 +38,10 @@ public:
         f1 = f1 % m;
         f2 = f2 % m;
 
-        return pair<UI, UI>(f1, f2);
+        nodes_pair = pair<UI, UI>(f1, f2);
     }
 
-    pair<UI, UI> hash_fun(string x){
+    void hash_fun(string & x, pair<UI, UI> & nodes_pair){
         UI f1 = 0;
         UI f2 = 0;
         size_t x_len = x.size();
@@ -52,10 +51,11 @@ public:
         }
         f1 = f1 % m;
         f2 = f2 % m;
-        return pair<UI, UI>(f1, f2);
+
+        nodes_pair = pair<UI, UI>(f1, f2);
     }
 
-    pair<UI, UI> hash_fun(vector<UI> x){
+    void hash_fun(vector<UI> & x, pair<UI, UI> & nodes_pair){
         UI f1 = 0;
         UI f2 = 0;
         size_t x_len = x.size();
@@ -65,7 +65,8 @@ public:
         }
         f1 = f1 % m;
         f2 = f2 % m;
-        return pair<UI, UI>(f1, f2);
+
+        nodes_pair = pair<UI, UI>(f1, f2);
     }
 
     void do_hash(size_t s = 4, UI r_max = 1000){
@@ -77,23 +78,24 @@ public:
             generate_rand_vectors(s, r_max);
             vector<pair<UI, UI>> nodes_pairs;
             for (size_t i = 0; i < n; i++) {
-                nodes_pairs.push_back(hash_fun(data[i]));
+                pair<UI, UI> nodes_pair;
+                hash_fun(data[i], nodes_pair);
+                nodes_pairs.push_back(nodes_pair);
             }
             flag_loop = G.generate_rand(nodes_pairs);
         }
-
 //        G.print_adj_with_weights();
         cout << "COUNT = " << count << endl;
         G.update_marks();
         node_marks = G.get_node_marks();
     }
 
-    UI search(T x){
-        pair<UI, UI> nodes = hash_fun(x);
+    UI search(T & x){
+        pair<UI, UI> nodes;
+        hash_fun(x, nodes);
         UI hash = (node_marks[nodes.first] + node_marks[nodes.second]) % n;
         return hash;
     }
-
 
 };
 

@@ -30,14 +30,14 @@ public:
     Graph(size_t V, size_t E) {
         graph_size = V;
         edges_num = E;
-        adj_list.resize(V, vector<ADJ_VERTEX>{});
-        node_marks.resize(V, INF);
-        connect_list.resize(V);
+        adj_list.resize(graph_size, vector<ADJ_VERTEX>{});
+        node_marks.resize(graph_size, INF);
+        connect_list.resize(graph_size);
 
 
     }
 
-    bool generate_rand(vector<pair<UI, UI>> nodes_pairs) {
+    bool generate_rand(vector<pair<UI, UI>> & nodes_pairs) {
         vector<bool> used(graph_size, false);
         UI comp_count = 1;
         for (UI i = 0; i < edges_num; ++i){
@@ -144,7 +144,7 @@ public:
 
     }
 
-    vector<UI>& get_node_marks(){
+    vector<UI> & get_node_marks(){
         return node_marks;
     }
 
