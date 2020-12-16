@@ -20,7 +20,8 @@ private:
     vector<T> data;
     size_t n;
     size_t m;
-    vector<vector<T>> table;
+    UI p, r_max, s;
+    vector<vector<T>> table_;
     vector<size_t> collision_indexes;
     vector<Quadratic<T>> quad;
     HashFunction<T> hash_fun;
@@ -28,13 +29,16 @@ private:
 
 
 public:
-    explicit Double(vector<T> & data_, UI p = 101, UI c = 1) {
+    explicit Double(vector<T> & data_,  UI c = 1, UI p_ = 101, UI r_max_ = 1000, UI s_ = 4) {
         data = data_;
         n = data.size();
         m = c * n;
-        table.resize(m);
+        table_.resize(m);
         quad_indexes.resize(m);
-        hash_fun = HashFunction<T>(0, m, p);
+        hash_fun = HashFunction<T>(m, r_max_, p_, s_);
+        p = p_;
+        r_max = r_max_;
+        s = s_;
     }
 
 
@@ -42,19 +46,19 @@ public:
         for (size_t i = 0; i < n; i++) {
             T x = data[i];
             UI hash = 0;
-            hash_fun.one_hash(x, hash, m);
+            hash_fun.one_hash(x, hash);
             vector<bool> used_coll(m, false);
 
-            if ((!table[hash].empty()) and (!used_coll[hash])) {
+            if ((!table_[hash].empty()) and (!used_coll[hash])) {
                 collision_indexes.push_back(hash);
                 used_coll[hash] = true;
             }
-            table[hash].push_back(x);
+            table_[hash].push_back(x);
         }
 
         for (size_t i = 0; i < collision_indexes.size(); ++i){
             UI coll = collision_indexes[i];
-            Quadratic<T> q(table[coll]);
+            Quadratic<T> q(table_[coll], p, r_max, s);
             quad_indexes[coll] = i;
             q.do_hash();
             quad.push_back(q);
@@ -69,9 +73,9 @@ public:
 
     UI search(T & x){
         UI hash = 0;
-        hash_fun.one_hash(x, hash, m);
+        hash_fun.one_hash(x, hash);
 
-        if (table[hash].size() > 1){
+        if (table_[hash].size() > 1){
             hash = quad[quad_indexes[hash]].search(x);
         }
         return hash;
@@ -79,14 +83,14 @@ public:
 
     void print_tables(){
         for (size_t i = 0; i < m; ++i){
-            if (table[i].size() < 2){
+            if (table_[i].size() < 2){
                 cout << endl << i << ":" ;
-                for (auto el : table[i]){
+                for (auto el : table_[i]){
                     cout << el << " ";
                 }
             }
             else {
-                if (table[i].size() > 1) {
+                if (table_[i].size() > 1) {
                     cout << endl << i << ": ";
                     quad[quad_indexes[i]].print_table();
                 }

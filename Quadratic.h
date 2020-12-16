@@ -25,46 +25,45 @@ private:
     vector<T> data;
     size_t n;
     size_t m;
-    vector<element<T>> table;
+    vector<element<T>> table_;
     HashFunction<T> hash_fun;
 
 public:
-    explicit Quadratic(vector<T> & data_, UI p = 101) {
+    explicit Quadratic(vector<T> & data_, UI p = 101, UI r_max = 1000, UI s = 4) {
         data = data_;
         n = data.size();
         m = n * n;
-        table.resize(m);
-        hash_fun = HashFunction<T>(1, m, p);
+        table_.resize(m);
+        hash_fun = HashFunction<T>(m, r_max, p, s);
     }
 
     void do_hash(){
         for (size_t i = 0; i < n; i++) {
-            int x = data[i];
+            T x = data[i];
             UI hash = 0;
-            hash_fun.one_hash(x, hash, m);
+            hash_fun.one_hash(x, hash);
 
             UI primary_hash = hash;
             size_t count = 1;
-            while (table[hash].used) {
-                hash = primary_hash + count * count;
-                count += count;
+            while (table_[hash].used) {
+                hash = (primary_hash + count * count) % m;
+                count++;
             }
-
-            table[hash].key = x;
-            table[hash].used = true;
+            table_[hash].key = x;
+            table_[hash].used = true;
         }
 
     }
 
     UI search(T & x){
         UI hash = 0;
-        hash_fun.one_hash(x, hash, m);
+        hash_fun.one_hash(x, hash);
 
         UI primary_hash = hash;
         size_t count = 1;
-        while (table[hash].key != x) {
-            hash = primary_hash + count * count;
-            count += count;
+        while (table_[hash].key != x) {
+            hash = (primary_hash + count * count) % m;
+            count++;
         }
         return hash;
     }
@@ -72,7 +71,7 @@ public:
     void print_table(){
         for (size_t i = 0; i < m; i++){
             cout << endl << i << " - ";
-            cout << table[i].key << " ";
+            cout << table_[i].key << " ";
         }
     }
 

@@ -24,11 +24,11 @@ public:
         size_t count = 0;
         while (!flag_loop) {
             count++;
-            hash_fun = HashFunction<T>(2, s, r_max);
+            hash_fun = HashFunction<T>(m, r_max, 0, s);
             vector<pair<UI, UI>> nodes_pairs;
             for (size_t i = 0; i < n; i++) {
                 pair<UI, UI> nodes_pair;
-                hash_fun.nodes_hash(data[i], nodes_pair, m);
+                hash_fun.pair_hash(data[i], nodes_pair);
                 nodes_pairs.push_back(nodes_pair);
             }
             flag_loop = G.generate_rand(nodes_pairs);
@@ -41,7 +41,7 @@ public:
 
     UI search(T & x){
         pair<UI, UI> nodes;
-        hash_fun.nodes_hash(x, nodes, m);
+        hash_fun.pair_hash(x, nodes);
         UI hash = (node_marks[nodes.first] + node_marks[nodes.second]) % n;
         return hash;
     }
