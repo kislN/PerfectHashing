@@ -71,7 +71,8 @@ public:
 
     void print_table(){
         for (size_t i = 0; i < m; i++){
-            cout << table[i].key << " - " << table[i].used << endl;
+            cout << endl << i << " - ";
+            cout << table[i].key << " ";
         }
     }
 

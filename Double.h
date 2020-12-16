@@ -14,25 +14,27 @@
 #include <vector>
 
 
-template <class T>
+
 class Double {
 private:
-    vector<T> data;
+    vector<int> data;
     size_t n;
     size_t m;
-    vector<vector<UI>> table;
-    hash_params h_params;
+    vector<vector<int>> table;
     vector<size_t> collision_indexes;
-    vector<Quadratic<T>> quad;
-    HashFunction<T> hash_fun;
+    vector<Quadratic<int>> quad;
+    HashFunction<int> hash_fun;
+    vector<size_t> quad_indexes;
+
 
 public:
-    explicit Double(vector<T> & data_, UI p = 101) {
+    explicit Double(vector<int> & data_, UI p = 101) {
         data = data_;
         n = data.size();
         m = n; /// ???
         table.resize(m);
-        hash_fun = HashFunction<T>(0, m, p);
+        quad_indexes.resize(m);
+        hash_fun = HashFunction<int>(0, m, p);
     }
 
 
@@ -41,22 +43,58 @@ public:
             int x = data[i];
             UI hash;
             hash_fun.hash_int(x, hash);
+            vector<bool> used_coll(m, false);
 
-            if (!table[hash].empty()) {
+            if ((!table[hash].empty()) and (!used_coll[hash])) {
                 collision_indexes.push_back(hash);
+                used_coll[hash] = true;
             }
             table[hash].push_back(x);
         }
 
-        for (UI coll : collision_indexes){
-            Quadratic<T> q(table[coll]);
-            q.create_table();
+        for (size_t i = 0; i < collision_indexes.size(); ++i){
+            UI coll = collision_indexes[i];
+            Quadratic<int> q(table[coll]);
+            quad_indexes[coll] = i;
+            q.do_hash();
             quad.push_back(q);
         }
 
+//        for (UI coll : collision_indexes){
+//            Quadratic<int> q(table[coll]);
+//            q.do_hash();
+//            quad.push_back(q);
+//        }
     }
 
+    UI search(int & x){
+        UI hash;
+        hash_fun.hash_int(x, hash);
 
+        if (table[hash].size() > 1){
+            hash = quad[quad_indexes[hash]].search(x);
+        }
+        return hash;
+    }
+
+    void print_tables(){
+        for (size_t i = 0; i < m; ++i){
+            if (table[i].size() < 2){
+                cout << endl << i << ":" ;
+                for (auto el : table[i]){
+                    cout << el << " ";
+                }
+            }
+            else {
+                if (table[i].size() > 1) {
+                    cout << endl << i << ": ";
+                    quad[quad_indexes[i]].print_table();
+                }
+
+            }
+
+        }
+    }
 };
 
 

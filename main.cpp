@@ -68,20 +68,26 @@ int main() {
 //        cout << v[i] << endl;
 //    }
 
+    Double d_hash(v);
+    d_hash.do_hash();
+    d_hash.print_tables();
+//    for (size_t i = 0; i < v.size(); ++i) {
+//        cout << d_hash.search(v[i]) << endl;
+//    }
 
     Graphic<int> g_hash(v, 2);
-    g_hash.do_hash(3, 100);
-//    for (size_t i = 0; i < v.size(); ++i) {
-//        cout << g_hash.search(v[i]) << endl;
-//    }
-
-    cout << endl << "Quadr" << endl;
-
-    Quadratic<int> q_hash(v);
-    q_hash.do_hash();
-//    for (size_t i = 0; i < v.size(); ++i) {
-//        cout << q_hash.search(v[i]) << endl;
-//    }
+//    g_hash.do_hash(3, 100);
+////    for (size_t i = 0; i < v.size(); ++i) {
+////        cout << g_hash.search(v[i]) << endl;
+////    }
+//
+//    cout << endl << "Quadr" << endl;
+//
+//    Quadratic<int> q_hash(v);
+//    q_hash.do_hash();
+////    for (size_t i = 0; i < v.size(); ++i) {
+////        cout << q_hash.search(v[i]) << endl;
+////    }
 
 
     return 0;
