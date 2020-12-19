@@ -24,7 +24,8 @@ bool quad_num(string file_name, size_t c, size_t average = 3) {
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-                int r = 1 + rand() % 100000;
+//                int r = 1 + rand() % 10000;
+                int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
                 }
@@ -129,10 +130,12 @@ bool quad_vec(string file_name, size_t c, size_t average = 3) {
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-                UI size = 1 + rand() % 40;
+//                UI size = 1 + rand() % 40;
+                UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-                    v.push_back(1 + rand() % 1000);
+//                    v.push_back(1 + rand() % 1000);
+                    v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
             }
@@ -165,7 +168,6 @@ bool quad_vec(string file_name, size_t c, size_t average = 3) {
 }
 
 
-
 bool double_num(string file_name, size_t c, size_t average = 3){
 
     ofstream file(file_name);
@@ -187,7 +189,8 @@ bool double_num(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-                int r = 1 + rand() % 100000;
+//                int r = 1 + rand() % 10000;
+                int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
                 }
@@ -290,10 +293,12 @@ bool double_vec(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-                UI size = 1 + rand() % 40;
+//                UI size = 1 + rand() % 40;
+                UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-                    v.push_back(1 + rand() % 1000);
+//                    v.push_back(1 + rand() % 1000);
+                    v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
             }
@@ -325,9 +330,6 @@ bool double_vec(string file_name, size_t c, size_t average = 3){
 }
 
 
-
-
-
 bool graph_num(string file_name, size_t c, size_t average = 3){
 
     ofstream file(file_name);
@@ -349,7 +351,8 @@ bool graph_num(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-                int r = 1 + rand() % 100000;
+//                int r = 1 + rand() % 10000;
+                int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
                 }
@@ -451,10 +454,12 @@ bool graph_vec(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-                UI size = 1 + rand() % 40;
+//                UI size = 1 + rand() % 40;
+                UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-                    v.push_back(1 + rand() % 1000);
+//                    v.push_back(1 + rand() % 1000);
+                    v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
             }
@@ -488,52 +493,49 @@ bool graph_vec(string file_name, size_t c, size_t average = 3){
 
 void all_experiments() {
 
-//    quad_num("../data/quad_num_1.csv", 1, 1);
-//    quad_num("../data/quad_num_2.csv", 2, 1);
-//    quad_num("../data/quad_num_3.csv", 3, 1);
-//    quad_num("../data/quad_num_4.csv", 4, 1);
+    quad_num("../data/quad_num_1.csv", 1, 1);
+    quad_num("../data/quad_num_2.csv", 2, 1);
+    quad_num("../data/quad_num_3.csv", 3, 1);
+    quad_num("../data/quad_num_4.csv", 4, 1);
 
-//    quad_word("../data/quad_word_1.csv", 1, 1);
-//    quad_word("../data/quad_word_2.csv", 2, 1);
-//    quad_word("../data/quad_word_3.csv", 3, 1);
-//    quad_word("../data/quad_word_4.csv", 4, 1);
+    quad_word("../data/quad_word_1.csv", 1, 1);
+    quad_word("../data/quad_word_2.csv", 2, 1);
+    quad_word("../data/quad_word_3.csv", 3, 1);
+    quad_word("../data/quad_word_4.csv", 4, 1);
 
-//    quad_vec("../data/quad_vec_1.csv", 1, 1);
-//    quad_vec("../data/quad_vec_2.csv", 2, 1);
-//    quad_vec("../data/quad_vec_3.csv", 3, 1);
-//    quad_vec("../data/quad_vec_4.csv", 4, 1);
-
-
-//    double_num("../data/double_num_1.csv", 1, 1);
-//    double_num("../data/double_num_2.csv", 2, 1);
-//    double_num("../data/double_num_3.csv", 3, 1);
-//    double_num("../data/double_num_4.csv", 4, 1);
-
-//    double_word("../data/double_word_1.csv", 1, 1);
-//    double_word("../data/double_word_2.csv", 2, 1);
-//    double_word("../data/double_word_3.csv", 3, 1);
-//    double_word("../data/double_word_4.csv", 4, 1);
-
-//    double_vec("../data/double_vec_1.csv", 1, 1);
-//    double_vec("../data/double_vec_2.csv", 2, 1);
-//    double_vec("../data/double_vec_3.csv", 3, 1);
-//    double_vec("../data/double_vec_4.csv", 4, 1);
+    quad_vec("../data/quad_vec_1.csv", 1, 1);
+    quad_vec("../data/quad_vec_2.csv", 2, 1);
+    quad_vec("../data/quad_vec_3.csv", 3, 1);
+    quad_vec("../data/quad_vec_4.csv", 4, 1);
 
 
-//    graph_num("../data/graph_num_2.csv", 2, 1);
-//    graph_num("../data/graph_num_3.csv", 3, 1);
-//    graph_num("../data/graph_num_4.csv", 4, 1);
-//
-//    graph_word("../data/graph_word_2.csv", 2, 1);
-//    graph_word("../data/graph_word_3.csv", 3, 1);
-//    graph_word("../data/graph_word_4.csv", 4, 1);
+    double_num("../data/double_num_1.csv", 1, 1);
+    double_num("../data/double_num_2.csv", 2, 1);
+    double_num("../data/double_num_3.csv", 3, 1);
+    double_num("../data/double_num_4.csv", 4, 1);
 
-//    graph_vec("../data/graph_vec_2.csv", 2, 1);
-//    graph_vec("../data/graph_vec_3.csv", 3, 1);
-//    graph_vec("../data/graph_vec_4.csv", 4, 1);
+    double_word("../data/double_word_1.csv", 1, 1);
+    double_word("../data/double_word_2.csv", 2, 1);
+    double_word("../data/double_word_3.csv", 3, 1);
+    double_word("../data/double_word_4.csv", 4, 1);
+
+    double_vec("../data/double_vec_1.csv", 1, 1);
+    double_vec("../data/double_vec_2.csv", 2, 1);
+    double_vec("../data/double_vec_3.csv", 3, 1);
+    double_vec("../data/double_vec_4.csv", 4, 1);
 
 
+    graph_num("../data/graph_num_2.csv", 2, 1);
+    graph_num("../data/graph_num_3.csv", 3, 1);
+    graph_num("../data/graph_num_4.csv", 4, 1);
 
+    graph_word("../data/graph_word_2.csv", 2, 1);
+    graph_word("../data/graph_word_3.csv", 3, 1);
+    graph_word("../data/graph_word_4.csv", 4, 1);
+
+    graph_vec("../data/graph_vec_2.csv", 2, 1);
+    graph_vec("../data/graph_vec_3.csv", 3, 1);
+    graph_vec("../data/graph_vec_4.csv", 4, 1);
 
 }
 

@@ -20,9 +20,11 @@ public:
      HashFunction(size_t m_, UI r_max_, size_t s_ = 4){
         m = m_;
         s = s_;
-        r_max = r_max_;
-        a = 1 + rand() % r_max;
-        b = 0 + rand() % r_max;
+//        r_max = r_max_;
+//        a = 1 + rand() % r_max;
+//        b = 0 + rand() % r_max;
+        a = uid_a(gen);
+        b = uid_b(gen);
         generate_rand_vec(2);
     }
 
@@ -53,7 +55,8 @@ public:
         for (size_t i = 0; i < num_vecs; ++i) {
             vector<UI> rand_vec;
             for (size_t j = 0; j < s; ++j) {
-                rand_vec.push_back(1 + rand() % r_max);
+//                rand_vec.push_back(1 + rand() % r_max);
+                rand_vec.push_back(uid_a(gen));
             }
             rand_vectors.push_back(rand_vec);
         }

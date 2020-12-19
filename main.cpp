@@ -33,9 +33,11 @@ using namespace std::chrono;
 typedef unsigned int UI;
 const int INF = numeric_limits<UI>::max() / 2;
 const UI PRIME = 2971215073;
-UI tolerance = 100000000;
+UI r_max = 10000;
 mt19937 gen(time(0));   // Mersenne twister
-uniform_int_distribution<> uid(0, tolerance-1);
+uniform_int_distribution<> uid_a(1, r_max-1);
+uniform_int_distribution<> uid_b(0, r_max-1);
+uniform_int_distribution<> uid_word(4, 39);
 
 #include "Quadratic.h"
 #include "Double.h"
