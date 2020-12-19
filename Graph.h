@@ -2,10 +2,6 @@
 #define PERFECTHASHING_GRAPH_H
 
 
-UI tolerance = 100000000;
-mt19937 gen(time(0));   // Mersenne twister
-uniform_int_distribution<> uid(0, tolerance-1);
-
 UI mod(int a, int b) {
     return (a % b + b) % b;
 }
@@ -148,14 +144,6 @@ public:
         return node_marks;
     }
 
-//    vector<vector<ADJ_VERTEX>> &get_adj_list() {
-//        return adj_list;
-//    }
-//
-//    vector<EDGE<T>> &get_edges_list() {
-//        return edges_list;
-//    }
-//
     bool is_empty() {
         for (UI i = 0; i < graph_size; ++i) {
             if (!adj_list[i].empty())
@@ -191,17 +179,6 @@ public:
             }
         }
     }
-//
-//    void print_edges_list() {
-//        if (this->is_empty())
-//            cout << "List is empty" << endl;
-//        else {
-//            for (UI i = 0; i < edges_num; ++i) {
-//                cout << edges_list[i].vertex_a << " - " << edges_list[i].vertex_b << ": " <<
-//                     edges_list[i].weight << " " << edges_list[i].weight_flag << endl;
-//            }
-//        }
-//    }
 };
 
 #endif //PERFECTHASHING_GRAPH_H

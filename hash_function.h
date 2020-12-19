@@ -3,16 +3,6 @@
 #ifndef PERFECTHASHING_HASH_FUNCTION_H
 #define PERFECTHASHING_HASH_FUNCTION_H
 
-#include <random>
-
-typedef unsigned int UI;
-using namespace std;
-
-
-//UI hash_fun2(int & x, UI a, UI b, UI p, size_t M){
-//    return ((a * x + b) % p) % M;
-//}
-
 
 template <class T>
 class HashFunction {
@@ -22,16 +12,14 @@ private:
     size_t s;
     UI a;
     UI b;
-    UI p;
     UI r_max;
 
 public:
      HashFunction() = default;
 
-     HashFunction(size_t m_, UI r_max_, UI p_ = 101, size_t s_ = 4){
+     HashFunction(size_t m_, UI r_max_, size_t s_ = 4){
         m = m_;
         s = s_;
-        p = p_;
         r_max = r_max_;
         a = 1 + rand() % r_max;
         b = 0 + rand() % r_max;
@@ -72,7 +60,7 @@ public:
     }
 
     void hash_fun1(int & x, UI & hash){
-        hash = ((a * x + b) % p) % m;
+        hash = ((a * x + b) % PRIME) % m;
     }
 
     void hash_fun2(size_t rand_vec_ind, int & x, UI & f_hash){
@@ -100,9 +88,6 @@ public:
         }
         f_hash = f_hash % m;
     }
-
-
-
 
 };
 

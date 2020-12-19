@@ -1,6 +1,3 @@
-//
-// Created by Anastasiia Kislitsyna on 12/5/20.
-//
 
 #ifndef PERFECTHASHING_QUADRATIC_H
 #define PERFECTHASHING_QUADRATIC_H
@@ -29,12 +26,12 @@ private:
     HashFunction<T> hash_fun;
 
 public:
-    explicit Quadratic(vector<T> & data_, UI p = 101, UI r_max = 1000, UI s = 4) {
+    explicit Quadratic(vector<T> & data_, UI c = 1, UI r_max = 1000, UI s = 4) {
         data = data_;
         n = data.size();
-        m = n * n;
+        m = c * n * n;
         table_.resize(m);
-        hash_fun = HashFunction<T>(m, r_max, p, s);
+        hash_fun = HashFunction<T>(m, r_max, s);
     }
 
     void do_hash(){

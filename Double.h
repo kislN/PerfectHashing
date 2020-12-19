@@ -1,6 +1,4 @@
-//
-// Created by Anastasiia Kislitsyna on 12/6/20.
-//
+
 
 #ifndef PERFECTHASHING_DOUBLE_H
 #define PERFECTHASHING_DOUBLE_H
@@ -20,7 +18,7 @@ private:
     vector<T> data;
     size_t n;
     size_t m;
-    UI p, r_max, s;
+    UI r_max, s;
     vector<vector<T>> table_;
     vector<size_t> collision_indexes;
     vector<Quadratic<T>> quad;
@@ -29,14 +27,13 @@ private:
 
 
 public:
-    explicit Double(vector<T> & data_,  UI c = 1, UI p_ = 101, UI r_max_ = 1000, UI s_ = 4) {
+    explicit Double(vector<T> & data_, UI c = 1, UI r_max_ = 1000, UI s_ = 4) {
         data = data_;
         n = data.size();
         m = c * n;
         table_.resize(m);
         quad_indexes.resize(m);
-        hash_fun = HashFunction<T>(m, r_max_, p_, s_);
-        p = p_;
+        hash_fun = HashFunction<T>(m, r_max_, s_);
         r_max = r_max_;
         s = s_;
     }
@@ -58,17 +55,12 @@ public:
 
         for (size_t i = 0; i < collision_indexes.size(); ++i){
             UI coll = collision_indexes[i];
-            Quadratic<T> q(table_[coll], p, r_max, s);
+            Quadratic<T> q(table_[coll], 1, r_max, s);
             quad_indexes[coll] = i;
             q.do_hash();
             quad.push_back(q);
         }
 
-//        for (UI coll : collision_indexes){
-//            Quadratic<int> q(table[coll]);
-//            q.do_hash();
-//            quad.push_back(q);
-//        }
     }
 
     UI search(T & x){

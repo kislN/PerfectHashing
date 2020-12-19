@@ -92,10 +92,19 @@
 		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/Quadratic.h">
 			<Option target="PerfectHashing"/>
 		</Unit>
+		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/experiments.h">
+			<Option target="PerfectHashing"/>
+		</Unit>
 		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/hash_function.h">
 			<Option target="PerfectHashing"/>
 		</Unit>
 		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/main.cpp">
+			<Option target="PerfectHashing"/>
+		</Unit>
+		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/real_life_experiments.h">
+			<Option target="PerfectHashing"/>
+		</Unit>
+		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/utils.h">
 			<Option target="PerfectHashing"/>
 		</Unit>
 		<Unit filename="/Users/stasyan/CLionProjects/PerfectHashing/CMakeLists.txt">

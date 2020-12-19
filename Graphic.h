@@ -24,7 +24,7 @@ public:
         size_t count = 0;
         while (!flag_loop) {
             count++;
-            hash_fun = HashFunction<T>(m, r_max, 0, s);
+            hash_fun = HashFunction<T>(m, r_max, s);
             vector<pair<UI, UI>> nodes_pairs;
             for (size_t i = 0; i < n; i++) {
                 pair<UI, UI> nodes_pair;
@@ -34,7 +34,7 @@ public:
             flag_loop = G.generate_rand(nodes_pairs);
         }
 //        G.print_adj_with_weights();
-        cout << "COUNT = " << count << endl;
+//        cout << "COUNT = " << count << endl;
         G.update_marks();
         node_marks = G.get_node_marks();
     }
