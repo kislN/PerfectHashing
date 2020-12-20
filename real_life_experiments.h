@@ -5,7 +5,7 @@
 void readFile(vector<string> & words)
 {
     ifstream file;
-    file.open ("data/iliada_processed.txt");
+    file.open ("../data/iliada_processed.txt");
     if (!file.is_open()) return;
 
     string word;

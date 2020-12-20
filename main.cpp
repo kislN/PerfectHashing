@@ -51,7 +51,7 @@ uniform_int_distribution<> uid_word(4, 39);
 int main() {
     srand (time(NULL));
 
-//    all_experiments();
+    all_experiments();
     real_experiments();
 
     return 0;
