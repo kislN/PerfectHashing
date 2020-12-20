@@ -11,24 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49dffd3-0d00-421f-9d74-21d0439f30cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/experiments.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/real_life_experiments.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/report.ipynb" afterDir="false" />
+    <list default="true" id="a49dffd3-0d00-421f-9d74-21d0439f30cc" name="Default Changelist" comment="last update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Double.h" beforeDir="false" afterPath="$PROJECT_DIR$/Double.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphic.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graphic.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quadratic.h" beforeDir="false" afterPath="$PROJECT_DIR$/Quadratic.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PerfectHashing.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PerfectHashing.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hash_function.h" beforeDir="false" afterPath="$PROJECT_DIR$/hash_function.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,35 +78,38 @@
     <MESSAGE value="working version of Double hashing with integer" />
     <MESSAGE value="not working, before changing structure of the hash class" />
     <MESSAGE value="chtob ne sglazit" />
-    <option name="LAST_COMMIT_MESSAGE" value="chtob ne sglazit" />
+    <MESSAGE value="almost done i hope" />
+    <MESSAGE value="added mersene twister" />
+    <MESSAGE value="last update" />
+    <option name="LAST_COMMIT_MESSAGE" value="last update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>57</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/experiments.h</url>
-          <line>181</line>
+          <line>183</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/experiments.h</url>
-          <line>207</line>
+          <line>210</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/experiments.h</url>
-          <line>493</line>
+          <line>498</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/experiments.h</url>
-          <line>71</line>
+          <line>72</line>
           <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/real_life_experiments.h</url>
+          <line>19</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

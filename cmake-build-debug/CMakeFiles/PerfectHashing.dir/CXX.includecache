@@ -41,8 +41,6 @@ unistd.h
 -
 
 /Users/stasyan/CLionProjects/PerfectHashing/hash_function.h
-random
--
 
 /Users/stasyan/CLionProjects/PerfectHashing/main.cpp
 iostream
