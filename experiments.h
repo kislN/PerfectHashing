@@ -493,49 +493,49 @@ bool graph_vec(string file_name, size_t c, size_t average = 3){
 
 void all_experiments() {
 
-    quad_num("../data/quad_num_1.csv", 1, 1);
-    quad_num("../data/quad_num_2.csv", 2, 1);
-    quad_num("../data/quad_num_3.csv", 3, 1);
-    quad_num("../data/quad_num_4.csv", 4, 1);
+    quad_num("../data/quad_num_1.csv", 1, 3);
+    quad_num("../data/quad_num_2.csv", 2, 3);
+    quad_num("../data/quad_num_3.csv", 3, 3);
+    quad_num("../data/quad_num_4.csv", 4, 3);
 
-    quad_word("../data/quad_word_1.csv", 1, 1);
-    quad_word("../data/quad_word_2.csv", 2, 1);
-    quad_word("../data/quad_word_3.csv", 3, 1);
-    quad_word("../data/quad_word_4.csv", 4, 1);
+    quad_word("../data/quad_word_1.csv", 1, 3);
+    quad_word("../data/quad_word_2.csv", 2, 3);
+    quad_word("../data/quad_word_3.csv", 3, 3);
+    quad_word("../data/quad_word_4.csv", 4, 3);
 
-    quad_vec("../data/quad_vec_1.csv", 1, 1);
-    quad_vec("../data/quad_vec_2.csv", 2, 1);
-    quad_vec("../data/quad_vec_3.csv", 3, 1);
-    quad_vec("../data/quad_vec_4.csv", 4, 1);
-
-
-    double_num("../data/double_num_1.csv", 1, 1);
-    double_num("../data/double_num_2.csv", 2, 1);
-    double_num("../data/double_num_3.csv", 3, 1);
-    double_num("../data/double_num_4.csv", 4, 1);
-
-    double_word("../data/double_word_1.csv", 1, 1);
-    double_word("../data/double_word_2.csv", 2, 1);
-    double_word("../data/double_word_3.csv", 3, 1);
-    double_word("../data/double_word_4.csv", 4, 1);
-
-    double_vec("../data/double_vec_1.csv", 1, 1);
-    double_vec("../data/double_vec_2.csv", 2, 1);
-    double_vec("../data/double_vec_3.csv", 3, 1);
-    double_vec("../data/double_vec_4.csv", 4, 1);
+    quad_vec("../data/quad_vec_1.csv", 1, 3);
+    quad_vec("../data/quad_vec_2.csv", 2, 3);
+    quad_vec("../data/quad_vec_3.csv", 3, 3);
+    quad_vec("../data/quad_vec_4.csv", 4, 3);
 
 
-    graph_num("../data/graph_num_2.csv", 2, 1);
-    graph_num("../data/graph_num_3.csv", 3, 1);
-    graph_num("../data/graph_num_4.csv", 4, 1);
+    double_num("../data/double_num_1.csv", 1, 3);
+    double_num("../data/double_num_2.csv", 2, 3);
+    double_num("../data/double_num_3.csv", 3, 3);
+    double_num("../data/double_num_4.csv", 4, 3);
 
-    graph_word("../data/graph_word_2.csv", 2, 1);
-    graph_word("../data/graph_word_3.csv", 3, 1);
-    graph_word("../data/graph_word_4.csv", 4, 1);
+    double_word("../data/double_word_1.csv", 1, 3);
+    double_word("../data/double_word_2.csv", 2, 3);
+    double_word("../data/double_word_3.csv", 3, 3);
+    double_word("../data/double_word_4.csv", 4, 3);
 
-    graph_vec("../data/graph_vec_2.csv", 2, 1);
-    graph_vec("../data/graph_vec_3.csv", 3, 1);
-    graph_vec("../data/graph_vec_4.csv", 4, 1);
+    double_vec("../data/double_vec_1.csv", 1, 3);
+    double_vec("../data/double_vec_2.csv", 2, 3);
+    double_vec("../data/double_vec_3.csv", 3, 3);
+    double_vec("../data/double_vec_4.csv", 4, 3);
+
+
+    graph_num("../data/graph_num_2.csv", 2, 3);
+    graph_num("../data/graph_num_3.csv", 3, 3);
+    graph_num("../data/graph_num_4.csv", 4, 3);
+
+    graph_word("../data/graph_word_2.csv", 2, 3);
+    graph_word("../data/graph_word_3.csv", 3, 3);
+    graph_word("../data/graph_word_4.csv", 4, 3);
+
+    graph_vec("../data/graph_vec_2.csv", 2, 3);
+    graph_vec("../data/graph_vec_3.csv", 3, 3);
+    graph_vec("../data/graph_vec_4.csv", 4, 3);
 
 }
 
