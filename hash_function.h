@@ -20,9 +20,6 @@ public:
      HashFunction(size_t m_, UI r_max_, size_t s_ = 4){
         m = m_;
         s = s_;
-//        r_max = r_max_;
-//        a = 1 + rand() % r_max;
-//        b = 0 + rand() % r_max;
         a = uid_a(gen);
         b = uid_b(gen);
         generate_rand_vec(2);

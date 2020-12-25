@@ -18,6 +18,7 @@ private:
     vector<T> data;
     size_t n;
     size_t m;
+    size_t bound;
     UI r_max, s;
     vector<vector<T>> table_;
     vector<size_t> collision_indexes;
@@ -25,40 +26,58 @@ private:
     HashFunction<T> hash_fun;
     vector<size_t> quad_indexes;
 
-
 public:
-    explicit Double(vector<T> & data_, UI c = 1, UI r_max_ = 1000, UI s_ = 4) {
+    explicit Double(vector<T> & data_, UI c = 1, UI r_max_ = 1000, UI s_ = 4, size_t bound_coeff = 4) {
         data = data_;
         n = data.size();
         m = c * n;
         table_.resize(m);
         quad_indexes.resize(m);
-        hash_fun = HashFunction<T>(m, r_max_, s_);
         r_max = r_max_;
         s = s_;
+        bound = n * bound_coeff;
     }
 
 
     void do_hash(){
-        for (size_t i = 0; i < n; i++) {
-            T x = data[i];
-            UI hash = 0;
-            hash_fun.one_hash(x, hash);
-            vector<bool> used_coll(m, false);
 
-            if ((!table_[hash].empty()) and (!used_coll[hash])) {
-                collision_indexes.push_back(hash);
-                used_coll[hash] = true;
+        while (true)
+        {
+            vector<size_t> coll_count(m, 0);
+            hash_fun = HashFunction<T>(m, r_max, s);
+            for (size_t i = 0; i < n; i++) {
+                T x = data[i];
+                UI hash = 0;
+                hash_fun.one_hash(x, hash);
+
+                table_[hash].push_back(x);
+                coll_count[hash]++;
             }
-            table_[hash].push_back(x);
-        }
 
-        for (size_t i = 0; i < collision_indexes.size(); ++i){
-            UI coll = collision_indexes[i];
-            Quadratic<T> q(table_[coll], 1, r_max, s);
-            quad_indexes[coll] = i;
-            q.do_hash();
-            quad.push_back(q);
+            size_t sum = 0;
+            for (size_t i = 0; i < m; ++i) {
+                sum += coll_count[i] * coll_count[i];
+                if (coll_count[i] > 1) {
+                    collision_indexes.push_back(i);
+                }
+            }
+
+            if (sum >= bound){
+                table_.clear();
+                table_.resize(m);
+                collision_indexes.clear();
+                continue;
+            }
+            else {
+                for (size_t i = 0; i < collision_indexes.size(); ++i) {
+                    UI coll = collision_indexes[i];
+                    Quadratic<T> q(table_[coll], 1, r_max, s);
+                    quad_indexes[coll] = i;
+                    q.do_hash();
+                    quad.push_back(q);
+                }
+                break;
+            }
         }
 
     }

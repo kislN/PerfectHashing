@@ -24,7 +24,6 @@ bool quad_num(string file_name, size_t c, size_t average = 3) {
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-//                int r = 1 + rand() % 10000;
                 int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
@@ -130,11 +129,9 @@ bool quad_vec(string file_name, size_t c, size_t average = 3) {
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-//                UI size = 1 + rand() % 40;
                 UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-//                    v.push_back(1 + rand() % 1000);
                     v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
@@ -168,14 +165,14 @@ bool quad_vec(string file_name, size_t c, size_t average = 3) {
 }
 
 
-bool double_num(string file_name, size_t c, size_t average = 3){
+bool double_num(string file_name, size_t c, size_t average = 3, size_t bound_coeff = 4){
 
     ofstream file(file_name);
     if (!file.is_open()) {
         return 0;
     }
     cout << "File is open " << endl;
-    file << "DataType,DataN,C,BuildTime,SearchTime,Memory" << endl;
+    file << "DataType,DataN,C,Bound,BuildTime,SearchTime,Memory" << endl;
 
     vector<size_t> data_n{100, 500, 1000, 1500, 2500, 4000};
 
@@ -189,13 +186,12 @@ bool double_num(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-//                int r = 1 + rand() % 10000;
                 int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
                 }
             }
-            Double<int> d_nums(numbers, c, 10000, 4);
+            Double<int> d_nums(numbers, c, 10000, 4, bound_coeff);
 
             auto start_time = high_resolution_clock::now();
             d_nums.do_hash();
@@ -215,7 +211,7 @@ bool double_num(string file_name, size_t c, size_t average = 3){
         build_time = duration_cast<microseconds>(build_time);
         search_time = duration_cast<microseconds>(search_time);
 
-        file << "Numbers" << "," << n << "," << c << "," << build_time.count() / 1000000. << ","
+        file << "Numbers" << "," << n << "," << c << "," << bound_coeff << "," << build_time.count() / 1000000. << ","
              << search_time.count() / 1000000. << "," << total_memory << endl;
     }
 
@@ -224,14 +220,14 @@ bool double_num(string file_name, size_t c, size_t average = 3){
 }
 
 
-bool double_word(string file_name, size_t c, size_t average = 3){
+bool double_word(string file_name, size_t c, size_t average = 3, size_t bound_coeff = 4){
 
     ofstream file(file_name);
     if (!file.is_open()) {
         return 0;
     }
     cout << "File is open " << endl;
-    file << "DataType,DataN,C,BuildTime,SearchTime,Memory" << endl;
+    file << "DataType,DataN,C,Bound,BuildTime,SearchTime,Memory" << endl;
 
     vector<size_t> data_n{100, 500, 1000, 1500, 2500, 4000};
 
@@ -245,7 +241,7 @@ bool double_word(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<string> words;
             gen_words(words, n);
-            Double<string> d_words(words, c, 10000, 50);
+            Double<string> d_words(words, c, 10000, 50, bound_coeff);
 
             auto start_time = high_resolution_clock::now();
             d_words.do_hash();
@@ -264,7 +260,7 @@ bool double_word(string file_name, size_t c, size_t average = 3){
 
         build_time = duration_cast<microseconds>(build_time);
         search_time = duration_cast<microseconds>(search_time);
-        file << "Words" << "," << n << "," << c << "," << build_time.count() / 1000000. << ","
+        file << "Words" << "," << n << "," << c << "," << bound_coeff << "," << build_time.count() / 1000000. << ","
              << search_time.count() / 1000000. << "," << total_memory << endl;
     }
     file.close();
@@ -272,14 +268,14 @@ bool double_word(string file_name, size_t c, size_t average = 3){
 }
 
 
-bool double_vec(string file_name, size_t c, size_t average = 3){
+bool double_vec(string file_name, size_t c, size_t average = 3, size_t bound_coeff = 4){
 
     ofstream file(file_name);
     if (!file.is_open()) {
         return 0;
     }
     cout << "File is open " << endl;
-    file << "DataType,DataN,C,BuildTime,SearchTime,Memory" << endl;
+    file << "DataType,DataN,C,Bound,BuildTime,SearchTime,Memory" << endl;
 
     vector<size_t> data_n{100, 500, 1000, 1500, 2500, 4000};
 
@@ -293,16 +289,14 @@ bool double_vec(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-//                UI size = 1 + rand() % 40;
                 UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-//                    v.push_back(1 + rand() % 1000);
                     v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
             }
-            Double<vector<UI>> d_vecs(vectors, c, 10000, 50);
+            Double<vector<UI>> d_vecs(vectors, c, 10000, 50, bound_coeff);
 
             auto start_time = high_resolution_clock::now();
             d_vecs.do_hash();
@@ -321,7 +315,7 @@ bool double_vec(string file_name, size_t c, size_t average = 3){
 
         build_time = duration_cast<microseconds>(build_time);
         search_time = duration_cast<microseconds>(search_time);
-        file << "Vectors" << "," << n << "," << c << "," << build_time.count() / 1000000. << ","
+        file << "Vectors" << "," << n << "," << c << "," << bound_coeff << "," << build_time.count() / 1000000. << ","
              << search_time.count() / 1000000. << "," << total_memory << endl;
     }
 
@@ -351,7 +345,6 @@ bool graph_num(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<int> numbers;
             while (numbers.size() < n) {
-//                int r = 1 + rand() % 10000;
                 int r = uid_a(gen);
                 if (find(numbers.begin(), numbers.end(), r) == numbers.end()) {
                     numbers.push_back(r);
@@ -454,11 +447,9 @@ bool graph_vec(string file_name, size_t c, size_t average = 3){
             long long memory = getMemoryUsage();
             vector<vector<UI>> vectors;
             while (vectors.size() < n){
-//                UI size = 1 + rand() % 40;
                 UI size = uid_word(gen);
                 vector<UI> v;
                 for (size_t j = 0; j < size; ++j){
-//                    v.push_back(1 + rand() % 1000);
                     v.push_back(uid_a(gen));
                 }
                 vectors.push_back(v);
@@ -509,20 +500,50 @@ void all_experiments() {
     quad_vec("../data/quad_vec_4.csv", 4, 3);
 
 
-    double_num("../data/double_num_1.csv", 1, 3);
-    double_num("../data/double_num_2.csv", 2, 3);
-    double_num("../data/double_num_3.csv", 3, 3);
-    double_num("../data/double_num_4.csv", 4, 3);
+    double_num("../data/double_num_1_3.csv", 1, 3, 3);
+    double_num("../data/double_num_2_3.csv", 2, 3, 3);
+    double_num("../data/double_num_3_3.csv", 3, 3, 3);
+    double_num("../data/double_num_4_3.csv", 4, 3, 3);
 
-    double_word("../data/double_word_1.csv", 1, 3);
-    double_word("../data/double_word_2.csv", 2, 3);
-    double_word("../data/double_word_3.csv", 3, 3);
-    double_word("../data/double_word_4.csv", 4, 3);
+    double_word("../data/double_word_1_3.csv", 1, 3, 3);
+    double_word("../data/double_word_2_3.csv", 2, 3, 3);
+    double_word("../data/double_word_3_3.csv", 3, 3, 3);
+    double_word("../data/double_word_4_3.csv", 4, 3, 3);
 
-    double_vec("../data/double_vec_1.csv", 1, 3);
-    double_vec("../data/double_vec_2.csv", 2, 3);
-    double_vec("../data/double_vec_3.csv", 3, 3);
-    double_vec("../data/double_vec_4.csv", 4, 3);
+    double_vec("../data/double_vec_1_3.csv", 1, 3, 3);
+    double_vec("../data/double_vec_2_3.csv", 2, 3, 3);
+    double_vec("../data/double_vec_3_3.csv", 3, 3, 3);
+    double_vec("../data/double_vec_4_3.csv", 4, 3, 3);
+
+    double_num("../data/double_num_1_4.csv", 1, 3, 4);
+    double_num("../data/double_num_2_4.csv", 2, 3, 4);
+    double_num("../data/double_num_3_4.csv", 3, 3, 4);
+    double_num("../data/double_num_4_4.csv", 4, 3, 4);
+
+    double_word("../data/double_word_1_4.csv", 1, 3, 4);
+    double_word("../data/double_word_2_4.csv", 2, 3, 4);
+    double_word("../data/double_word_3_4.csv", 3, 3, 4);
+    double_word("../data/double_word_4_4.csv", 4, 3, 4);
+
+    double_vec("../data/double_vec_1_4.csv", 1, 3, 4);
+    double_vec("../data/double_vec_2_4.csv", 2, 3, 4);
+    double_vec("../data/double_vec_3_4.csv", 3, 3, 4);
+    double_vec("../data/double_vec_4_4.csv", 4, 3, 4);
+
+    double_num("../data/double_num_1_5.csv", 1, 3, 5);
+    double_num("../data/double_num_2_5.csv", 2, 3, 5);
+    double_num("../data/double_num_3_5.csv", 3, 3, 5);
+    double_num("../data/double_num_4_5.csv", 4, 3, 5);
+
+    double_word("../data/double_word_1_5.csv", 1, 3, 5);
+    double_word("../data/double_word_2_5.csv", 2, 3, 5);
+    double_word("../data/double_word_3_5.csv", 3, 3, 5);
+    double_word("../data/double_word_4_5.csv", 4, 3, 5);
+
+    double_vec("../data/double_vec_1_5.csv", 1, 3, 5);
+    double_vec("../data/double_vec_2_5.csv", 2, 3, 5);
+    double_vec("../data/double_vec_3_5.csv", 3, 3, 5);
+    double_vec("../data/double_vec_4_5.csv", 4, 3, 5);
 
 
     graph_num("../data/graph_num_2.csv", 2, 3);

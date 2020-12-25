@@ -33,8 +33,6 @@ public:
             }
             flag_loop = G.generate_rand(nodes_pairs);
         }
-//        G.print_adj_with_weights();
-//        cout << "COUNT = " << count << endl;
         G.update_marks();
         node_marks = G.get_node_marks();
     }

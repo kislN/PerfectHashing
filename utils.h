@@ -21,7 +21,6 @@ void gen_words(vector <string> & vec, size_t len_vec)
     char c;
     for(size_t i = 0; i < len_vec; i++)
     {
-//        size_t len_w = 4 + rand() % 40;
         size_t len_w = uid_word(gen);
         for (size_t j = 0; j < len_w; j++)
         {

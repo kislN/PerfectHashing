@@ -1,0 +1,7 @@
+DataType,DataN,C,Bound,BuildTime,SearchTime,Memory
+Vectors,100,3,4,1.065,0,152
+Vectors,500,3,4,4.12,0,308
+Vectors,1000,3,4,8.025,0,412
+Vectors,1500,3,4,12.855,0,664
+Vectors,2500,3,4,23.343,0,1164
+Vectors,4000,3,4,43.156,0,1576

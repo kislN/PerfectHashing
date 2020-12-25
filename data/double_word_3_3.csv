@@ -1,0 +1,7 @@
+DataType,DataN,C,Bound,BuildTime,SearchTime,Memory
+Words,100,3,3,0.543,0,132
+Words,500,3,3,3.219,0,200
+Words,1000,3,3,6.428,0,332
+Words,1500,3,3,9.492,0,392
+Words,2500,3,3,14.998,0,508
+Words,4000,3,3,25.497,0.001,884

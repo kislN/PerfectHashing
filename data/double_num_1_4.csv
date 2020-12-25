@@ -1,0 +1,7 @@
+DataType,DataN,C,Bound,BuildTime,SearchTime,Memory
+Numbers,100,1,4,0.58,0,76
+Numbers,500,1,4,2.862,0,124
+Numbers,1000,1,4,4.902,0,120
+Numbers,1500,1,4,9.944,0,224
+Numbers,2500,1,4,16.476,0,336
+Numbers,4000,1,4,30.957,0,368

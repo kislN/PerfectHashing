@@ -59,7 +59,7 @@ bool real_double(string file_name){
 
     auto build_time_ = high_resolution_clock::now();
     long total_memory =  getMemoryUsage();
-    Double<string> g_words(words, c, 10000, 50);
+    Double<string> g_words(words, c, 10000, 50, 3);
     g_words.do_hash();
     auto build_time = high_resolution_clock::now() - build_time_;
     total_memory += (getMemoryUsage() - total_memory) / 1024;
